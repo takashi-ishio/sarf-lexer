@@ -1,4 +1,4 @@
-package sarf.sing.lexer;
+package sarf.lexer;
 
 
 import org.antlr.v4.runtime.Lexer;

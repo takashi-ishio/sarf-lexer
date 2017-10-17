@@ -1,4 +1,4 @@
-package sarf.sing.lexer;
+package sarf.lexer;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -7,10 +7,10 @@ import java.util.HashMap;
 
 import org.antlr.v4.runtime.CharStreams;
 
-import sarf.sing.lexer.lang.CPP14Lexer;
-import sarf.sing.lexer.lang.CSharpLexer;
-import sarf.sing.lexer.lang.ECMAScriptLexer;
-import sarf.sing.lexer.lang.Java8Lexer;
+import sarf.lexer.lang.CPP14Lexer;
+import sarf.lexer.lang.CSharpLexer;
+import sarf.lexer.lang.ECMAScriptLexer;
+import sarf.lexer.lang.Java8Lexer;
 
 public class TokenReaderFactory {
 	

@@ -1,4 +1,4 @@
-package sarf.sing.lexer;
+package sarf.lexer;
 
 public enum FileType {
 

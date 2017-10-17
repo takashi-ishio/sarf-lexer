@@ -1,4 +1,4 @@
-package sarf.sing.lexer;
+package sarf.lexer;
 
 import java.io.File;
 import java.io.FileNotFoundException;

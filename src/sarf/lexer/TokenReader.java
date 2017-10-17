@@ -1,4 +1,4 @@
-package sarf.sing.lexer;
+package sarf.lexer;
 
 /**
  * A simple token reader that provides a sequence of tokens.

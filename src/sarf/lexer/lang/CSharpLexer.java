@@ -1,5 +1,5 @@
 // Generated from CSharpLexer.g4 by ANTLR 4.7
-package sarf.sing.lexer.lang;
+package sarf.lexer.lang;
 import java.util.Stack;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
