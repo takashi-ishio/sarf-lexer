@@ -33,7 +33,7 @@ public class DirectoryScan {
 						!c.getName().equals("..")) {
 						files.add(c);
 					} else if (c.isFile() && f.canRead()) {
-						action.process(f);
+						action.process(c);
 					}
 				}
 			} else if (f.isFile() && f.canRead()) {
