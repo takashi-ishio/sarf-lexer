@@ -3,8 +3,10 @@ package sarf.lexer;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 
+import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 
 import sarf.lexer.lang.CPP14Lexer;
@@ -73,6 +75,19 @@ public class TokenReaderFactory {
 		return FileType.UNSUPPORTED;
 	}
 
+	private static CharStream createStream(byte[] buf) throws IOException {
+		if (buf.length >= 3 && 
+			buf[0] == (byte)0xEF && buf[1] == (byte)0xBB && buf[2] == (byte)0xBF) {
+			return CharStreams.fromStream(new ByteArrayInputStream(buf, 3, buf.length-3));
+		} else if (buf.length >= 2 && buf[0] == (byte)0xFE && buf[1] == (byte)0xFF) {
+			return CharStreams.fromStream(new ByteArrayInputStream(buf, 2, buf.length-2), Charset.forName("UTF-16BE"));
+		} else if (buf.length >= 2 && buf[0] == (byte)0xFF && buf[1] == (byte)0xFE) {
+			return CharStreams.fromStream(new ByteArrayInputStream(buf, 2, buf.length-2), Charset.forName("UTF-16LE"));
+		} else {
+			return CharStreams.fromStream(new ByteArrayInputStream(buf));
+		}
+	}
+	
 	/**
 	 * @param filetype specifies a file type that can be obtained by TokenReaderFactory#getFileType. 
 	 * @param buf the source code buffer.    
@@ -82,16 +97,16 @@ public class TokenReaderFactory {
 		try {
 			switch (filetype) {
 			case CPP:
-				return new LexerTokenReader(filetype.ordinal(), new CPP14Lexer(CharStreams.fromStream(new ByteArrayInputStream(stream))));
+				return new LexerTokenReader(filetype.ordinal(), new CPP14Lexer(createStream(stream)));
 	
 			case JAVA:
-				return new LexerTokenReader(filetype.ordinal(), new Java8Lexer(CharStreams.fromStream(new ByteArrayInputStream(stream))));
+				return new LexerTokenReader(filetype.ordinal(), new Java8Lexer(createStream(stream)));
 
 			case ECMASCRIPT:
-				return new LexerTokenReader(filetype.ordinal(), new ECMAScriptLexer(CharStreams.fromStream(new ByteArrayInputStream(stream))));
+				return new LexerTokenReader(filetype.ordinal(), new ECMAScriptLexer(createStream(stream)));
 				
 			case CSHARP:
-				return new LexerTokenReader(filetype.ordinal(), new CSharpLexer(CharStreams.fromStream(new ByteArrayInputStream(stream))));
+				return new LexerTokenReader(filetype.ordinal(), new CSharpLexer(createStream(stream)));
 				
 			case UNSUPPORTED:
 			default:
