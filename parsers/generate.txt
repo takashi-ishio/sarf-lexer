@@ -1,14 +1,14 @@
 cd %~dp0
-java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.sing.lexer.lang CPP14.g4
-java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.sing.lexer.lang Java8.g4
-java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.sing.lexer.lang ECMAScript.g4
-java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.sing.lexer.lang CSharpLexer.g4
+java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.lexer.lang CPP14.g4
+java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.lexer.lang Java8.g4
+java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.lexer.lang ECMAScript.g4
+java -classpath antlr-4.7-complete.jar org.antlr.v4.Tool -package sarf.lexer.lang CSharpLexer.g4
 del *.tokens
 del *Listener.java
 del *Parser.java
-copy CPP14Lexer.java ..\src\sarf\sing\lexer\lang
-copy Java8Lexer.java ..\src\sarf\sing\lexer\lang
-copy ECMAScriptLexer.java ..\src\sarf\sing\lexer\lang
-copy CSharpLexer.java ..\src\sarf\sing\lexer\lang
+copy CPP14Lexer.java ..\src\sarf\lexer\lang
+copy Java8Lexer.java ..\src\sarf\lexer\lang
+copy ECMAScriptLexer.java ..\src\sarf\lexer\lang
+copy CSharpLexer.java ..\src\sarf\lexer\lang
 del *Lexer.java
 pause
