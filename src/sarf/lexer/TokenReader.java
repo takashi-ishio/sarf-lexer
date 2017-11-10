@@ -13,7 +13,7 @@ public interface TokenReader {
 	public boolean next();
 	
 	/**
-	 * @return the current token.  This method returns null for EOF.
+	 * @return the current token.  This method returns null if the reader reached EOF (next() returned false).
 	 */
 	public String getToken();
 	
