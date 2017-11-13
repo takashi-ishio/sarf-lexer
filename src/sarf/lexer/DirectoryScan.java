@@ -5,13 +5,16 @@ import java.util.ArrayList;
 
 
 /**
- * A class to traverse files in a directory. 
- * @author ishio
- *
+ * A utility class to traverse files in a directory. 
  */
 public class DirectoryScan {
 	
+
 	public interface Action {
+		/**
+		 * This method is called for each file. 
+		 * @param f a file in a directory.
+		 */
 		public void process(File f);
 	}
 
