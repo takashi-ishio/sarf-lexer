@@ -5,13 +5,21 @@ import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
 
 
+/**
+ * An implementation of TokenReader that wraps an ANTLR lexer.
+ */
 public class LexerTokenReader implements TokenReader {
 
-	private int filetype;
+	private FileType filetype;
 	private Lexer lexer;
 	private Token token;
 	
-	public LexerTokenReader(int filetype, Lexer lexer) {
+	/**
+	 * 
+	 * @param filetype
+	 * @param lexer
+	 */
+	public LexerTokenReader(FileType filetype, Lexer lexer) {
 		this.filetype = filetype;
 		this.lexer = lexer;
 	}
@@ -42,7 +50,7 @@ public class LexerTokenReader implements TokenReader {
 	}
 	
 	@Override
-	public int getFileType() {
+	public FileType getFileType() {
 		return filetype;
 	}
 }

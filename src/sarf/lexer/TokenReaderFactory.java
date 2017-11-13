@@ -105,16 +105,16 @@ public class TokenReaderFactory {
 		try {
 			switch (filetype) {
 			case CPP:
-				return new LexerTokenReader(filetype.ordinal(), new CPP14Lexer(createStream(buf)));
+				return new LexerTokenReader(filetype, new CPP14Lexer(createStream(buf)));
 	
 			case JAVA:
-				return new LexerTokenReader(filetype.ordinal(), new Java8Lexer(createStream(buf)));
+				return new LexerTokenReader(filetype, new Java8Lexer(createStream(buf)));
 
 			case ECMASCRIPT:
-				return new LexerTokenReader(filetype.ordinal(), new ECMAScriptLexer(createStream(buf)));
+				return new LexerTokenReader(filetype, new ECMAScriptLexer(createStream(buf)));
 				
 			case CSHARP:
-				return new LexerTokenReader(filetype.ordinal(), new CSharpLexer(createStream(buf)));
+				return new LexerTokenReader(filetype, new CSharpLexer(createStream(buf)));
 				
 			case UNSUPPORTED:
 			default:
@@ -136,16 +136,16 @@ public class TokenReaderFactory {
 		try {
 			switch (filetype) {
 			case CPP:
-				return new LexerTokenReader(filetype.ordinal(), new CPP14Lexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new CPP14Lexer(CharStreams.fromReader(stream)));
 	
 			case JAVA:
-				return new LexerTokenReader(filetype.ordinal(), new Java8Lexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new Java8Lexer(CharStreams.fromReader(stream)));
 
 			case ECMASCRIPT:
-				return new LexerTokenReader(filetype.ordinal(), new ECMAScriptLexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new ECMAScriptLexer(CharStreams.fromReader(stream)));
 
 			case CSHARP:
-				return new LexerTokenReader(filetype.ordinal(), new CSharpLexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new CSharpLexer(CharStreams.fromReader(stream)));
 
 			case UNSUPPORTED:
 			default:

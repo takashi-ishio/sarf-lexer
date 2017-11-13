@@ -30,6 +30,6 @@ public interface TokenReader {
 	/**
 	 * @return file type.
 	 */
-	public int getFileType();
+	public FileType getFileType();
 
 }
