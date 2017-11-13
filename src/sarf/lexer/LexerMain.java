@@ -1,15 +1,17 @@
 package sarf.lexer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 /**
  * This main class simply executes a lexer and output a list of tokens. 
  * The first argument must be a file name or a directory name.
  * If "-lexer:(c|cpp|java)" is specified as an argument, the specified lexer is used.
- * If "-hideTokens" is specified as an argument, this program does not output tokens (only error messages).
+ * If "-hideTokens" is specified as an argument, 
+ * this program does not output tokens; 
+ * this mode may be useful to analyze lexer errors.
  */
 public class LexerMain {
 
@@ -38,8 +40,8 @@ public class LexerMain {
 				
 			if (TokenReaderFactory.isSupported(filetype)) {
 				try {
-					FileReader reader = new FileReader(new File(filename));
-					TokenReader t = TokenReaderFactory.create(filetype, reader);
+					File f = new File(filename);
+					TokenReader t = TokenReaderFactory.create(filetype, Files.readAllBytes(f.toPath()));
 					while (t.next()) {
 						if (showTokens) {
 							System.out.print(filename);
@@ -51,7 +53,7 @@ public class LexerMain {
 							System.out.println(t.getToken());
 						}
 					}
-				} catch (FileNotFoundException e) {
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
