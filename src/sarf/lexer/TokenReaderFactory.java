@@ -75,6 +75,13 @@ public class TokenReaderFactory {
 		return FileType.UNSUPPORTED;
 	}
 
+	/**
+	 * Create a stream for an ANTLR lexer.
+	 * This method handles UTF-8/16 BOM.
+	 * @param buf bytes be parsed.
+	 * @return an instance of ANTLR CharStream.
+	 * @throws IOException may be thrown if instantiation failed.
+	 */
 	private static CharStream createStream(byte[] buf) throws IOException {
 		if (buf.length >= 3 && 
 			buf[0] == (byte)0xEF && buf[1] == (byte)0xBB && buf[2] == (byte)0xBF) {
@@ -89,24 +96,25 @@ public class TokenReaderFactory {
 	}
 	
 	/**
-	 * @param filetype specifies a file type that can be obtained by TokenReaderFactory#getFileType. 
-	 * @param buf the source code buffer.    
+	 * Create a TokenReader to read source code tokens.
+	 * @param filetype specifies a file type. It can be obtained by TokenReaderFactory#getFileType. 
+	 * @param buf source code content. 
 	 * @return a token reader.
 	 */
-	public static TokenReader create(FileType filetype, byte[] stream) {
+	public static TokenReader create(FileType filetype, byte[] buf) {
 		try {
 			switch (filetype) {
 			case CPP:
-				return new LexerTokenReader(filetype.ordinal(), new CPP14Lexer(createStream(stream)));
+				return new LexerTokenReader(filetype.ordinal(), new CPP14Lexer(createStream(buf)));
 	
 			case JAVA:
-				return new LexerTokenReader(filetype.ordinal(), new Java8Lexer(createStream(stream)));
+				return new LexerTokenReader(filetype.ordinal(), new Java8Lexer(createStream(buf)));
 
 			case ECMASCRIPT:
-				return new LexerTokenReader(filetype.ordinal(), new ECMAScriptLexer(createStream(stream)));
+				return new LexerTokenReader(filetype.ordinal(), new ECMAScriptLexer(createStream(buf)));
 				
 			case CSHARP:
-				return new LexerTokenReader(filetype.ordinal(), new CSharpLexer(createStream(stream)));
+				return new LexerTokenReader(filetype.ordinal(), new CSharpLexer(createStream(buf)));
 				
 			case UNSUPPORTED:
 			default:
