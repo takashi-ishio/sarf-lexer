@@ -8,10 +8,8 @@ import java.util.ArrayList;
 /**
  * This main class simply executes a lexer and output a list of tokens. 
  * The first argument must be a file name or a directory name.
- * If "-lexer:(c|cpp|java)" is specified as the second argument, the specified lexer is used.
- * If "-hideTokens" is specified as the second argument, this program does not output tokens (only error messages).
- * 
- * @author ishio
+ * If "-lexer:(c|cpp|java)" is specified as an argument, the specified lexer is used.
+ * If "-hideTokens" is specified as an argument, this program does not output tokens (only error messages).
  */
 public class LexerMain {
 
