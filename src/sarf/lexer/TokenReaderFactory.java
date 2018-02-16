@@ -128,24 +128,25 @@ public class TokenReaderFactory {
 	}
 
 	/**
+	 * Create a token reader reading source code from a given reader.
 	 * @param filetype specifies a file type that can be obtained by TokenReaderFactory#getFileType. 
-	 * @param stream is a source code stream.  The object is automatically closed.  
+	 * @param reader is source code.  The object is automatically closed.  
 	 * @return a token reader.
 	 */
-	public static TokenReader create(FileType filetype, Reader stream) {
+	public static TokenReader create(FileType filetype, Reader reader) {
 		try {
 			switch (filetype) {
 			case CPP:
-				return new LexerTokenReader(filetype, new CPP14Lexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new CPP14Lexer(CharStreams.fromReader(reader)));
 	
 			case JAVA:
-				return new LexerTokenReader(filetype, new Java8Lexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new Java8Lexer(CharStreams.fromReader(reader)));
 
 			case ECMASCRIPT:
-				return new LexerTokenReader(filetype, new ECMAScriptLexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new ECMAScriptLexer(CharStreams.fromReader(reader)));
 
 			case CSHARP:
-				return new LexerTokenReader(filetype, new CSharpLexer(CharStreams.fromReader(stream)));
+				return new LexerTokenReader(filetype, new CSharpLexer(CharStreams.fromReader(reader)));
 
 			case UNSUPPORTED:
 			default:
