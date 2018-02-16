@@ -28,6 +28,11 @@ public interface TokenReader {
 	public int getCharPositionInLine();
 	
 	/**
+	 * @return the token type.  The value is dependent on the implementation.
+	 */
+	public int getTokenType();
+	
+	/**
 	 * @return file type.
 	 */
 	public FileType getFileType();

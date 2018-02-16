@@ -50,6 +50,11 @@ public class LexerTokenReader implements TokenReader {
 	}
 	
 	@Override
+	public int getTokenType() {
+		return token.getType();
+	}
+	
+	@Override
 	public FileType getFileType() {
 		return filetype;
 	}
